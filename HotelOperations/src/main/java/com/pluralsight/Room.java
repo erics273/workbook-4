@@ -31,6 +31,29 @@ public class Room {
         return !this.isDirty() && !this.isOccupied();
     }
 
+    public void checkIn() {
+        //some error checking to see if the room is even available
+        if (this.isAvailable()) {
+            this.isOccupied = true;
+            this.isDirty = true;  // Mark room dirty once occupied
+            System.out.println("Guest checked in.");
+        } else {
+            System.out.println("Room is not available.");
+        }
+    }
+
+    public void checkOut() {
+        //clean the dang room
+        this.cleanRoom();
+        //get out the dang room
+        this.isOccupied = false;
+
+    }
+
+    public void cleanRoom() {
+            this.isDirty = false;
+    }
+
     //create getters
     public int getNumberOfBeds() {
         return numberOfBeds;

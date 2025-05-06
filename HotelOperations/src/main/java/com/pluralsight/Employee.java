@@ -1,5 +1,7 @@
 package com.pluralsight;
 
+import java.time.LocalDateTime;
+
 public class Employee {
     // Private instance variables
     private int employeeId;
@@ -7,6 +9,7 @@ public class Employee {
     private String department;
     private double payRate;
     private double hoursWorked;
+    private double startTime;
 
     // Constructor
     public Employee(int employeeId, String name, String department, double payRate, double hoursWorked) {
@@ -72,4 +75,53 @@ public class Employee {
         double overtimePay = this.getOvertimeHours() * this.getPayRate() * 1.5;
         return regularPay + overtimePay;
     }
+
+    public void punchIn() {
+        LocalDateTime now = LocalDateTime.now();
+        double time = now.getHour() + now.getMinute() / 60.0;
+        this.startTime = time;
+    }
+
+
+    public void punchOut() {
+        LocalDateTime now = LocalDateTime.now();
+        double time = now.getHour() + now.getMinute() / 60.0;
+        if (time >= this.startTime) {
+            double worked = time - this.startTime;
+            this.hoursWorked += worked;
+        } else {
+            System.out.println("Error: Punch out time is earlier than punch in time.");
+        }
+    }
+
+    public void punchIn(double time) {
+        this.startTime = time;
+    }
+
+    public void punchOut(double time) {
+        //make sure the time is not before the start time
+        if (time >= startTime) {
+            double worked = time - startTime;
+            this.hoursWorked += worked;
+        } else {
+            System.out.println("Error: Punch out time is earlier than punch in time.");
+        }
+    }
+
+    public void punchTimeCard(double time, boolean isPunchIn) {
+        if(isPunchIn){
+//            this.startTime = time;
+            this.punchIn(time);
+        }else{
+//            if (time >= this.startTime) {
+//                double worked = time - this.startTime;
+//                this.hoursWorked += worked;
+//            } else {
+//                System.out.println("Error: Punch out time is earlier than punch in time.");
+//            }
+            this.punchOut(time);
+        }
+
+    }
+
 }

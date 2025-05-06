@@ -29,7 +29,7 @@ public class TheApp {
 
         //change the number of nights for reservation 1
         System.out.println("number of nights changed to 2 for reservation 1");
-        reservation1.setNumberOfNights(2);
+        reservation1.setNumberOfNights(3);
 
         //output the new total
         System.out.println("The NEW total for reservation 1 is: " + reservation1.getReservationTotal());
@@ -62,6 +62,20 @@ public class TheApp {
         System.out.println("Regular Hours: " + employee2.getRegularHours());
         System.out.println("Overtime Hours: " + employee2.getOvertimeHours());
         System.out.println("Total Pay: $" + employee2.getTotalPay());
+
+        //-----------------------------------------Employee Class below
+
+        Employee employee3 = new Employee(102, "Taylor Smith", "HR", 20.0, 0);
+
+        // Simulate punching in and out
+        employee3.punchIn(9.0);    // 9:00 AM
+        employee3.punchOut(13.5);  // 1:30 PM
+
+        System.out.println("Hours Worked: " + employee3.getHoursWorked());
+
+        employee1.punchTimeCard(9.0, true);    // 9:00 AM
+        employee3.punchTimeCard(13.5, false);  // 1:30 PM
+        System.out.println("Hours Worked: " + employee3.getHoursWorked());
 
     }
 

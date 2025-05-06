@@ -14,9 +14,17 @@ public class Reservation {
 
     //derived getters
     public double getPrice(){
+
+//        if(this.getRoomType().equalsIgnoreCase("king")){
+//            return 139.00;
+//        }
+//
+//        return 124.00;
+
         return this.getRoomType().equalsIgnoreCase("king") ? 139.00 : 124.00;
     }
 
+    //handle the resevation total taking into account numberOfNights, rate, and weekend surcharge
     public double getReservationTotal(){
         double total = this.getNumberOfNights() * this.getPrice();
         if(this.isWeekend()){
