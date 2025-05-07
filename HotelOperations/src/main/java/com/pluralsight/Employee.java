@@ -76,22 +76,27 @@ public class Employee {
         return regularPay + overtimePay;
     }
 
+    //genereate the time using LocalDate time and build the double with the pieces of the date and time
     public void punchIn() {
+        //get the current date and time using localdate time
         LocalDateTime now = LocalDateTime.now();
-        double time = now.getHour() + now.getMinute() / 60.0;
-        this.startTime = time;
+        double currentTime = now.getHour() + now.getMinute() / 60.0;
+       //just call the original method and pass in the time we generated
+        this.punchIn(currentTime);
     }
 
 
+    //genereate the time using LocalDate time and build the double with the pieces of the date and time
     public void punchOut() {
         LocalDateTime now = LocalDateTime.now();
         double time = now.getHour() + now.getMinute() / 60.0;
-        if (time >= this.startTime) {
-            double worked = time - this.startTime;
-            this.hoursWorked += worked;
-        } else {
-            System.out.println("Error: Punch out time is earlier than punch in time.");
-        }
+//        if (time >= this.startTime) {
+//            double worked = time - this.startTime;
+//            this.hoursWorked += worked;
+//        } else {
+//            System.out.println("Error: Punch out time is earlier than punch in time.");
+//        }
+        this.punchOut(time);
     }
 
     public void punchIn(double time) {
