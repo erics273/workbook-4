@@ -3,13 +3,14 @@ package com.pluralsight;
 import java.util.Scanner;
 
 public class BlackJackApp {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        String name1 = UserInterface.promptForValidName(scanner, "Player 1");
+        String name1 = UserInterface.processGetName(scanner, "Player 1");
         Player player1 = new Player(name1);
 
-        String name2 = UserInterface.promptForValidName(scanner, "Player 2");
+        String name2 = UserInterface.processGetName(scanner, "Player 2");
         Player player2 = new Player(name2);
 
         Deck deck = new Deck();
@@ -38,4 +39,5 @@ public class BlackJackApp {
 
         scanner.close();
     }
+
 }
